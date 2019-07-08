@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	
+	<!-- MVC Project에 사용되는 Annotation으로 설정된 부분을 xml 파일에서 가져다가 사용할 수 있도록 하는 설정 -->
+	<annotation-driven />
+
+	<!--캐싱하는 자원의 디렉토리와 url 설 -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!--Controller에서 포워딩하는 뷰의 이름에 조합을해서 결과 페이지를 만드는 설정
+	결과 페이지를 만드는 설정
+	앞에 redirect: 가 붙으면 이 설정을 따르지 않습니다. -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- 클래스 이름 위에 Annotation이 붙었을 때
+	bean을 자동으로 생성해주는 기본 패키지 경로
+	Spring MVC Project에서는 이 패키지안에 클래스를 만드는 것이 기본 -->
+	<context:component-scan base-package="tjsdnwls813.gmail.hybrid" />
+	
+	<!-- Controller가 처리하지 못하는 요청은
+	WAS가 처리하도록 하는 설정을 추가 -->
+	
+</beans:beans>
